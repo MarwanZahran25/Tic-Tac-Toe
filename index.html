@@ -5,19 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tic Tac Toe</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <script src="./app.js" defer></script>
   </head>
-  <body class="w-screen h-screen flex items-center justify-center bg-sky-300">
-    <div id="grid-container" class="h-96 w-96 bg-black rounded-lg shadow-lg grid-cols-3 grid content-stretch justify-stretch  gap-1 p-1" >
-        <div class="bg-sky-200 rounded-lg  " data-array="0"></div>
-        <div class="bg-sky-200 rounded-lg  " data-array="1"></div>
-        <div class="bg-sky-200 rounded-lg  " data-array="2"></div>
-        <div class="bg-sky-200 rounded-lg  " data-array="3"></div>
-        <div class="bg-sky-200 rounded-lg  " data-array="4"></div>
-        <div class="bg-sky-200 rounded-lg  " data-array="5"></div>
-        <div class="bg-sky-200 rounded-lg  " data-array="6"></div>
-        <div class="bg-sky-200 rounded-lg  " data-array="7"></div>
-        <div class="bg-sky-200 rounded-lg  " data-array="8"></div>
+  <body class="w-screen h-screen  items-stretch justify-stretch bg-sky-300 grid grid-cols-[1fr,4fr,1fr] grid-rows-[11fr,1fr]">
+    <div id="firsPlayerScore" class="justify-center items-center self-center justify-self-center text-7xl text-white font-extrabold">
+      <div >X</div>
+      <div id="Xscore"></div>
     </div>
+    <div id="board-container" class="h-fit w-96 bg-black rounded-lg shadow-lg grid-cols-3 grid content-stretch justify-stretch  gap-1 p-1 self-center justify-self-center" >
+        <div class="bg-sky-200 box-border overflow-clip rounded-lg text-center text-5xl text-white font-bold py-10 h-32 " data-array="0"></div>
+        <div class="bg-sky-200 box-border overflow-clip rounded-lg text-center text-5xl text-white font-bold py-10 h-32 " data-array="1"></div>
+        <div class="bg-sky-200 box-border overflow-clip rounded-lg text-center text-5xl text-white font-bold py-10 h-32 " data-array="2"></div>
+        <div class="bg-sky-200 box-border overflow-clip rounded-lg text-center text-5xl text-white font-bold py-10 h-32 " data-array="3"></div>
+        <div class="bg-sky-200 box-border overflow-clip rounded-lg text-center text-5xl text-white font-bold py-10 h-32 " data-array="4"></div>
+        <div class="bg-sky-200 box-border overflow-clip rounded-lg text-center text-5xl text-white font-bold py-10 h-32 " data-array="5"></div>
+        <div class="bg-sky-200 box-border overflow-clip rounded-lg text-center text-5xl text-white font-bold py-10 h-32 " data-array="6"></div>
+        <div class="bg-sky-200 box-border overflow-clip rounded-lg text-center text-5xl text-white font-bold py-10 h-32 " data-array="7"></div>
+        <div class="bg-sky-200 box-border overflow-clip rounded-lg text-center text-5xl text-white font-bold py-10 h-32 " data-array="8"></div>
+    </div>
+    <dialog id="round-win" class="w-96 bg- h-60  rounded-lg bg-sky-500 bottom-64 text-white open:flex open:flex-col open:justify-center open:items-center">
+      <div class="flex justify-around items-center flex-col gap-16 font-bold text-lg">
+        <h3> </h3>
+        <button id="closeModel" class="w-20 h-14 bg-green-300 rounded-lg bottom-7 " type="button">OK!</button>
+      </div>
+    </dialog>
+    <div id="seconedPlayerScore" class="justify-center items-center self-center justify-self-center text-7xl text-white font-extrabold">
+      <div>O</div>
+      <div id="Oscore"></div>
+    </div>
+    <div class="font-semibold col-start-2 text-white text-center self-end mb-4">Tic Tac Toe By:Marwan Zahran</div>
   </body>
 </html>
