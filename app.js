@@ -12,6 +12,7 @@ let gameBoard = (function () {
 function makeUser(name, symbol) {
   let score = 0;
   let moves = [];
+
   function increseScore() {
     score++;
   }
@@ -33,6 +34,9 @@ function makeUser(name, symbol) {
   function resetMoves() {
     moves = [];
   }
+  function resetScore() {
+    score = 0;
+  }
   return {
     increseScore,
     getScore,
@@ -41,6 +45,7 @@ function makeUser(name, symbol) {
     getSymbol,
     addMove,
     resetMoves,
+    resetScore,
   };
 }
 const firstPlayer = makeUser("firstPlayer", "X");
@@ -85,11 +90,17 @@ let gameLogic = (function () {
   let checkForDraw = function () {
     let draw = true;
     for (let i = 0; i < gameBoard.Board.length; i++) {
-      if (gameBoard.board[i] == "") {
+      if (gameBoard.Board[i] == "") {
         draw = false;
       }
     }
     return draw;
+  };
+  let highestScore = firstPlayer;
+  let HigherScore = function () {
+    if (firstPlayer.getScore() > seconedPlayer.getScore()) {
+      this.highestScore = firstPlayer;
+    } else highestScore = seconedPlayer;
   };
 
   return {
@@ -99,6 +110,8 @@ let gameLogic = (function () {
     checkForwining,
     winingCombintations,
     checkForDraw,
+    HigherScore,
+    highestScore,
   };
 })();
 squares.forEach((square) => {
@@ -106,7 +119,7 @@ squares.forEach((square) => {
     cell = e.target.getAttribute("data-array");
     if (gameBoard.Board[cell] == "") {
       e.target.textContent = `${gameLogic.currentTurn.getSymbol()}`;
-      gameBoard.Board[cell] = Number(cell);
+      gameBoard.Board[cell] = gameLogic.currentTurn.getSymbol();
       gameLogic.currentTurn.addMove(Number(cell));
       if (gameLogic.checkForwining(gameLogic.currentTurn.getMoves())) {
         roundWin.textContent = `${gameLogic.currentTurn.getSymbol()} WINS THIS ROUND!!!`;
@@ -118,7 +131,16 @@ squares.forEach((square) => {
         xScore.textContent = `${firstPlayer.getScore()}`;
         oScore.textContent = `${seconedPlayer.getScore()}`;
         gameLogic.currentTurn = firstPlayer;
-      } else if (checkForDraw) {
+        if (firstPlayer.getScore() == 5 || seconedPlayer.getScore() == 5) {
+          firstPlayer.resetScore();
+          seconedPlayer.resetScore();
+
+          roundWin.textContent = `${gameLogic.highestScore.getSymbol()} WINS THE GAME`;
+          roundWindialog.showModal();
+          xScore.textContent = `${firstPlayer.getScore()}`;
+          oScore.textContent = `${seconedPlayer.getScore()}`;
+        }
+      } else if (gameLogic.checkForDraw()) {
         roundWin.textContent = "THIS IS A DRAW";
         roundWindialog.showModal();
         gameBoard.Board.fill("");
