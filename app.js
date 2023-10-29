@@ -82,6 +82,15 @@ let gameLogic = (function () {
     }
     return false;
   };
+  let checkForDraw = function () {
+    let draw = true;
+    for (let i = 0; i < gameBoard.Board.length; i++) {
+      if (gameBoard.board[i] == "") {
+        draw = false;
+      }
+    }
+    return draw;
+  };
 
   return {
     currentTurn,
@@ -89,6 +98,7 @@ let gameLogic = (function () {
     addRound,
     checkForwining,
     winingCombintations,
+    checkForDraw,
   };
 })();
 squares.forEach((square) => {
@@ -108,6 +118,12 @@ squares.forEach((square) => {
         xScore.textContent = `${firstPlayer.getScore()}`;
         oScore.textContent = `${seconedPlayer.getScore()}`;
         gameLogic.currentTurn = firstPlayer;
+      } else if (checkForDraw) {
+        roundWin.textContent = "THIS IS A DRAW";
+        roundWindialog.showModal();
+        gameBoard.Board.fill("");
+        firstPlayer.resetMoves();
+        seconedPlayer.resetMoves();
       } else gameLogic.changeTurn();
     }
   });
