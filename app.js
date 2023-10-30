@@ -96,11 +96,13 @@ let gameLogic = (function () {
     }
     return draw;
   };
-  let highestScore = firstPlayer;
-  let HigherScore = function () {
+
+  let higherScore = function () {
+    let highestScore = firstPlayer;
     if (firstPlayer.getScore() > seconedPlayer.getScore()) {
       this.highestScore = firstPlayer;
     } else highestScore = seconedPlayer;
+    return highestScore;
   };
 
   return {
@@ -110,8 +112,7 @@ let gameLogic = (function () {
     checkForwining,
     winingCombintations,
     checkForDraw,
-    HigherScore,
-    highestScore,
+    higherScore,
   };
 })();
 squares.forEach((square) => {
@@ -132,11 +133,12 @@ squares.forEach((square) => {
         oScore.textContent = `${seconedPlayer.getScore()}`;
         gameLogic.currentTurn = firstPlayer;
         if (firstPlayer.getScore() == 5 || seconedPlayer.getScore() == 5) {
+          roundWin.textContent = `${gameLogic
+            .higherScore()
+            .getSymbol()} WINS THE GAME`;
+          roundWindialog.showModal();
           firstPlayer.resetScore();
           seconedPlayer.resetScore();
-
-          roundWin.textContent = `${gameLogic.highestScore.getSymbol()} WINS THE GAME`;
-          roundWindialog.showModal();
           xScore.textContent = `${firstPlayer.getScore()}`;
           oScore.textContent = `${seconedPlayer.getScore()}`;
         }

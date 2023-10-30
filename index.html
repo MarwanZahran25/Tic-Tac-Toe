@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./app.js" defer></script>
   </head>
-  <body class="w-screen h-screen  items-stretch justify-stretch bg-sky-300 grid grid-cols-[1fr,4fr,1fr] grid-rows-[11fr,1fr]">
+  <body class="w-screen h-screen  items-stretch justify-stretch bg-sky-300 grid grid-cols-[1fr,4fr,1fr] grid-rows-[11fr,1fr] relative">
     <div id="firsPlayerScore" class="justify-center items-center self-center justify-self-center text-7xl text-white font-extrabold">
       <div >X</div>
       <div id="Xscore" class="text-black text-center"></div>
@@ -23,10 +23,10 @@
         <div class="bg-sky-200 box-border overflow-clip rounded-lg text-center text-5xl text-white font-bold py-10 h-32 " data-array="7"></div>
         <div class="bg-sky-200 box-border overflow-clip rounded-lg text-center text-5xl text-white font-bold py-10 h-32 " data-array="8"></div>
     </div>
-    <dialog id="round-win" class="w-96 bg- h-60  rounded-lg bg-sky-500 bottom-64 text-white open:flex open:flex-col open:justify-center open:items-center">
+    <dialog id="round-win" class="w-96 bg- h-60  rounded-lg bg-sky-500 bottom-64 text-white open:flex open:flex-col open:justify-center open:items-center open:absolute open:bottom-0">
       <div class="flex justify-around items-center flex-col gap-16 font-bold text-lg">
         <h3> </h3>
-        <button id="closeModel" class="w-20 h-14 bg-green-300 rounded-lg bottom-7 " type="button">OK!</button>
+        <button id="closeModel" class="w-20 h-14 bg-sky-300 rounded-lg bottom-7 " type="button">OK!</button>
       </div>
     </dialog>
     <div id="seconedPlayerScore" class="justify-center items-center self-center justify-self-center text-7xl text-white font-extrabold">
